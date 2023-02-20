@@ -1,0 +1,14 @@
+﻿
+@{
+	ViewData["Title"] = "Confirmation Message";
+}
+@model Mission07_twoodru8.Models.MovieFormModel
+
+
+<div>
+	<h1>You have successfully added "@Model.Title" to your list!</h1>
+	<h2>Enjoy watching more movies!</h2>
+	<p><a class="btn btn-primary" asp-controller="Home" asp-action="MovieForm">Add Another Movie</a></p>
+	<p><a class="btn btn-primary" asp-controller="Home" asp-action="MyPodcasts">Check Out My Podcast</a></p>
+	<p><a class="btn btn-primary" asp-controller="Home" asp-action="Index">Head Home</a></p>
+</div>

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Movie List";
+}
+
+@model List<MovieFormModel>
+
+<table class="table table-bordered table-striped">
+    <thead class="font-weight-bold">
+        <tr>
+            <td>Title</td>
+            <td>Year</td>
+            <td>Director</td>
+            <td>Category</td>
+            <td>Rating</td>
+            <td>Edited</td>
+            <td>Lent to</td>
+            <td>Notes</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (MovieFormModel x in Model)
+        {
+        <tr>
+            <td>@x.Title</td>
+            <td>@x.Year</td>
+            <td>@x.Director</td>
+            <td>@x.Categories.CategoryName</td>
+            <td>@x.Rating</td>
+            <td>@x.Edited</td>
+            <td>@x.LentTo</td>
+            <td>@x.Notes</td>
+            @*We can add anythin we want to call it to the asp-route. If you do this and then inspect it, then it will create a route for this app id*@
+            @*When we just do asp-route-id then if you go look at the startup file under the endpoints, then it is the optional parameter for the pattern*@
+            <td><a asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">Edit</a></td>
+            <td><a asp-controller="Home" asp-action="Delete" asp-route-id="@x.MovieId">Delete</a></td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,70 @@
+﻿@{
+	ViewData["Title"] = "Movie Form";
+}
+
+@model Mission07_twoodru8.Models.MovieFormModel
+
+@if (Model is not null)
+{
+	<h1>Thank you for submitting the form</h1>
+}
+
+<h1>Fill out your movie form</h1><br /><br />
+<div class="row">
+	<div class="col-2">
+        <form method="post">
+            @*This is to ensure that this hidden field only pops up for the edit form*@
+            @if(ViewBag.IsEdit)
+			{
+                <input type="hidden" asp-for="MovieId"/>
+
+			}
+            <label class="form-label" asp-for="CategoriesId">Category:</label>
+            <select asp-for="CategoriesId">
+                <option value="">Select a Category</option>
+                @foreach (Categories c in ViewBag.Categories)
+                {
+                    <option value="@c.CategoriesId">@c.CategoryName</option>
+
+                }
+            </select><br />
+
+            <label class="form-label" asp-for="Title">Title:</label>
+            <input class="form-control" asp-for="Title" /><br />
+
+            <label class="form-label" asp-for="Year">Year:</label>
+            <input class="form-control" asp-for="Year" /><br />
+
+            <label class="form-label" asp-for="Director">Director:</label>
+            <input class="form-control" asp-for="Director" /><br />
+
+            <label asp-for="Rating">Rating:</label>
+            <select class="form-select" asp-for="Rating">
+                <option value="G">G</option>
+                <option value="PG">PG</option>
+                <option value="PG-13">PG-13</option>
+                <option value="R">R</option>
+            </select><br /><br />
+
+            <label class="form-label" asp-for="Edited">Edited:</label>
+            <div class="">
+                <select class="form-select">
+                    <option value="True">Yes</option>
+                    <option value="False">No</option>
+                </select>
+            </div>
+            <br /><br />
+
+            <label class="form-label" asp-for="LentTo">Lent to:</label>
+            <input class="form-control" asp-for="LentTo" /><br />
+
+            <label class="form-label" asp-for="Notes">Notes:</label>
+            <input class="form-control" asp-for="Notes" /><br />
+
+            @*This will be where the errors are thrown from the model, if there are any*@
+            <div asp-validation-summary="All" id="errors"></div>
+
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+</div>
+</div>
