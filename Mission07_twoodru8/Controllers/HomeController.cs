@@ -36,6 +36,7 @@ namespace Mission06_twoodru8.Controllers
             return View();
         }
 
+        //Post request that will still check the model
         [HttpPost]
         public IActionResult MovieForm(MovieFormModel m)
         {
@@ -48,12 +49,14 @@ namespace Mission06_twoodru8.Controllers
             }//else, we will throw them back to the view and display the error.
             else
             {
+                //if it is an add a movie, then this will be false so that the hidden movieid form field is not put in the form
                 ViewBag.IsEdit = false;
                 ViewBag.Categories = _dbContext.Categories.ToList();
                 return View();
             }
 
         }
+        //This will display all the movies
         public IActionResult MovieList()
         {
             var movies = _dbContext.Responses //include is joining
@@ -67,6 +70,7 @@ namespace Mission06_twoodru8.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            //Turn this to true so that in the movie form, the hidden field will generate that will hold the movieid
             ViewBag.IsEdit = true;
             ViewBag.Categories = _dbContext.Categories.ToList();
 
@@ -100,6 +104,7 @@ namespace Mission06_twoodru8.Controllers
             
         }
 
+        //Deleting the selected movie with the movie id
         [HttpGet]
         public IActionResult Delete(int id)
         {
